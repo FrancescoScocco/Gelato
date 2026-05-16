@@ -519,6 +519,61 @@
       text-align: center;
     }
 
+    /* ---------- Mobile side menu (offcanvas) ---------- */
+    .side-menu {
+      background: var(--dark) !important;
+      color: var(--white);
+      width: 78%;
+      max-width: 360px;
+      border-left: 1px solid rgba(248,232,229,0.12);
+    }
+    .side-menu .offcanvas-header {
+      border-bottom: 1px solid rgba(248,232,229,0.12);
+      padding: 22px 24px;
+    }
+    .side-menu .offcanvas-title {
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--cream);
+    }
+    .side-menu .offcanvas-body { padding: 18px 24px 32px; }
+    .side-menu .nav-link {
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(248,232,229,0.08);
+    }
+    .side-menu .nav-link:hover { color: var(--pink); }
+    .side-menu .btn-pill { display: inline-block; margin-top: 18px; }
+
+    @media (min-width: 992px) {
+      /* Desktop: ripristina layout inline come una normale navbar */
+      .side-menu {
+        position: static;
+        display: flex;
+        flex-grow: 1;
+        width: auto;
+        max-width: none;
+        background: transparent !important;
+        border: 0;
+        visibility: visible !important;
+        transform: none !important;
+      }
+      .side-menu .offcanvas-header { display: none; }
+      .side-menu .offcanvas-body { padding: 0; }
+      .side-menu .nav-link {
+        border: 0;
+        padding: 8px 14px;
+        font-size: 0.78rem;
+      }
+      .side-menu .btn-pill { margin-top: 0; }
+    }
+
     @media (max-width: 991px) {
       .hero { padding: 130px 0 70px; }
       .nav-link { margin-left: 0; padding: 10px 0; }
@@ -536,20 +591,26 @@
   <div class="container">
     <a class="navbar-brand" href="#home">Donna Stroupe · Berry Bliss</a>
 
-    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuNav" aria-controls="menuNav" aria-label="Abrir menu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="menuNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">Tradição</a></li>
-        <li class="nav-item"><a class="nav-link" href="#menu">Cardápio</a></li>
-        <li class="nav-item"><a class="nav-link" href="#proteico">Gelato Proteico</a></li>
-        <li class="nav-item"><a class="nav-link" href="#delivery">Delivery</a></li>
-        <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-        <li class="nav-item ms-lg-3"><a class="btn-pill" href="#delivery">Peça agora</a></li>
-      </ul>
+    <div class="offcanvas offcanvas-end text-bg-dark side-menu" tabindex="-1" id="menuNav" aria-labelledby="menuNavLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="menuNavLabel">Donna Stroupe</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Tradição</a></li>
+          <li class="nav-item"><a class="nav-link" href="#menu">Cardápio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proteico">Gelato Proteico</a></li>
+          <li class="nav-item"><a class="nav-link" href="#delivery">Delivery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item ms-lg-3 mt-3 mt-lg-0"><a class="btn-pill" href="#delivery">Peça agora</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
@@ -996,11 +1057,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  document.querySelectorAll(".nav-link, .btn-pill").forEach(link => {
+  document.querySelectorAll("#menuNav .nav-link, #menuNav .btn-pill").forEach(link => {
     link.addEventListener("click", function () {
-      const menu = document.querySelector(".navbar-collapse");
-      if (menu.classList.contains("show")) {
-        new bootstrap.Collapse(menu).toggle();
+      const menuEl = document.getElementById("menuNav");
+      if (menuEl.classList.contains("show")) {
+        const oc = bootstrap.Offcanvas.getInstance(menuEl) || new bootstrap.Offcanvas(menuEl);
+        oc.hide();
       }
     });
   });
