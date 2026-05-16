@@ -519,6 +519,87 @@
       text-align: center;
     }
 
+    /* ---------- FAQ Accordion (mobile) ---------- */
+    .faq-accordion .accordion-item {
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid rgba(75,6,18,0.18);
+      border-radius: 0;
+    }
+    .faq-accordion .accordion-button {
+      background: transparent;
+      color: var(--dark);
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 18px 4px;
+      box-shadow: none;
+      gap: 12px;
+    }
+    .faq-accordion .accordion-button:not(.collapsed) {
+      background: transparent;
+      color: #c44967;
+    }
+    .faq-accordion .accordion-button:focus { box-shadow: none; }
+    .faq-accordion .accordion-button::after {
+      filter: invert(11%) sepia(70%) saturate(3000%) hue-rotate(330deg);
+    }
+    .faq-accordion .faq-q-icon {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #c44967;
+      color: var(--cream);
+      font-weight: 900;
+      display: inline-grid;
+      place-items: center;
+      font-size: 0.95rem;
+    }
+    .faq-accordion .accordion-body {
+      color: var(--text-dark);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      padding: 0 4px 18px 44px;
+    }
+
+    /* ---------- Reviews carousel (mobile) ---------- */
+    .reviews-carousel {
+      max-width: 320px;
+      margin: 0 auto;
+      padding: 0 30px 70px;
+    }
+    .reviews-carousel .carousel-item { padding: 10px 0 40px; }
+    .reviews-carousel .bubble { margin-bottom: 0; }
+    .reviews-carousel .carousel-control-prev,
+    .reviews-carousel .carousel-control-next {
+      width: 30px;
+      opacity: 0.9;
+      top: 40%;
+      bottom: auto;
+      height: 50px;
+    }
+    .reviews-carousel .carousel-control-prev-icon,
+    .reviews-carousel .carousel-control-next-icon {
+      background-color: var(--pink);
+      border-radius: 50%;
+      padding: 14px;
+      background-size: 50% 50%;
+    }
+    .reviews-carousel .carousel-indicators {
+      margin-bottom: 0;
+      bottom: 10px;
+    }
+    .reviews-carousel .carousel-indicators [data-bs-target] {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background-color: var(--pink);
+      opacity: 0.4;
+      border: 0;
+      margin: 0 5px;
+    }
+    .reviews-carousel .carousel-indicators .active { opacity: 1; }
+
     /* ---------- Mobile side menu (offcanvas) ---------- */
     .side-menu {
       background: var(--dark) !important;
@@ -951,7 +1032,8 @@
       a autêntica tradição italiana em Jundiaí.
     </p>
 
-    <div class="row g-5">
+    <!-- Desktop / tablet (≥768px): griglia 3 colonne -->
+    <div class="row g-5 d-none d-md-flex">
       <div class="col-md-4">
         <div class="bubble">
           <strong>@marianasweet</strong>
@@ -973,6 +1055,45 @@
         </div>
       </div>
     </div>
+
+    <!-- Mobile (<768px): slideshow -->
+    <div id="reviewsCarousel" class="carousel slide reviews-carousel d-md-none" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="bubble">
+            <strong>@marianasweet</strong>
+            <p>"Pistache de Bronte de verdade, parece estar na Itália!"</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="bubble">
+            <strong>@rafa_fitjundiai</strong>
+            <p>"O gelato proteico é uma virada de jogo. Tão bom quanto o clássico."</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="bubble">
+            <strong>@familia_oliveira</strong>
+            <p>"Delivery rapidíssimo, chegou perfeito. Top de Jundiaí!"</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+      </button>
+
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Depoimento 1"></button>
+        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1" aria-label="Depoimento 2"></button>
+        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="2" aria-label="Depoimento 3"></button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -986,35 +1107,93 @@
 
     <div class="row justify-content-center">
       <div class="col-lg-8">
-        <div class="faq-item">
-          <div class="faq-icon">?</div>
-          <div>
-            <h5 class="fw-bold">O gelato é realmente artesanal?</h5>
-            <p>Sim. Produzimos todos os dias no nosso laboratório em Jundiaí, com leite fresco e ingredientes selecionados da melhor tradição italiana. Sem preparados industriais.</p>
+        <!-- Desktop / tablet (≥768px): risposte sempre visibili -->
+        <div class="d-none d-md-block">
+          <div class="faq-item">
+            <div class="faq-icon">?</div>
+            <div>
+              <h5 class="fw-bold">O gelato é realmente artesanal?</h5>
+              <p>Sim. Produzimos todos os dias no nosso laboratório em Jundiaí, com leite fresco e ingredientes selecionados da melhor tradição italiana. Sem preparados industriais.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-icon">?</div>
+            <div>
+              <h5 class="fw-bold">O gelato proteico é indicado para quem treina?</h5>
+              <p>Foi desenvolvido justamente para atletas e entusiastas do fitness: alto teor de proteína, zero açúcares adicionados, sabor cremoso. Ideal para o pós-treino.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-icon">?</div>
+            <div>
+              <h5 class="fw-bold">Quanto tempo leva o delivery?</h5>
+              <p>Em média 25 minutos na zona urbana de Jundiaí. Usamos embalagens térmicas para garantir a textura perfeita da nossa vitrine até a sua colher.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-icon">?</div>
+            <div>
+              <h5 class="fw-bold">Posso pedir para eventos e festas?</h5>
+              <p>Claro. Preparamos bolos de gelato, potes personalizados e propostas dedicadas para casamentos, aniversários e empresas. Fale conosco e montamos juntos o seu cardápio.</p>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-icon">?</div>
-          <div>
-            <h5 class="fw-bold">O gelato proteico é indicado para quem treina?</h5>
-            <p>Foi desenvolvido justamente para atletas e entusiastas do fitness: alto teor de proteína, zero açúcares adicionados, sabor cremoso. Ideal para o pós-treino.</p>
+        <!-- Mobile (<768px): accordion -->
+        <div class="accordion faq-accordion d-md-none" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqA1" aria-expanded="false" aria-controls="faqA1">
+                <span class="faq-q-icon">?</span> O gelato é realmente artesanal?
+              </button>
+            </h2>
+            <div id="faqA1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Sim. Produzimos todos os dias no nosso laboratório em Jundiaí, com leite fresco e ingredientes selecionados da melhor tradição italiana. Sem preparados industriais.
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <div class="faq-icon">?</div>
-          <div>
-            <h5 class="fw-bold">Quanto tempo leva o delivery?</h5>
-            <p>Em média 25 minutos na zona urbana de Jundiaí. Usamos embalagens térmicas para garantir a textura perfeita da nossa vitrine até a sua colher.</p>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqA2" aria-expanded="false" aria-controls="faqA2">
+                <span class="faq-q-icon">?</span> O gelato proteico é indicado para quem treina?
+              </button>
+            </h2>
+            <div id="faqA2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Foi desenvolvido justamente para atletas e entusiastas do fitness: alto teor de proteína, zero açúcares adicionados, sabor cremoso. Ideal para o pós-treino.
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <div class="faq-icon">?</div>
-          <div>
-            <h5 class="fw-bold">Posso pedir para eventos e festas?</h5>
-            <p>Claro. Preparamos bolos de gelato, potes personalizados e propostas dedicadas para casamentos, aniversários e empresas. Fale conosco e montamos juntos o seu cardápio.</p>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqA3" aria-expanded="false" aria-controls="faqA3">
+                <span class="faq-q-icon">?</span> Quanto tempo leva o delivery?
+              </button>
+            </h2>
+            <div id="faqA3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Em média 25 minutos na zona urbana de Jundiaí. Usamos embalagens térmicas para garantir a textura perfeita da nossa vitrine até a sua colher.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqA4" aria-expanded="false" aria-controls="faqA4">
+                <span class="faq-q-icon">?</span> Posso pedir para eventos e festas?
+              </button>
+            </h2>
+            <div id="faqA4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Claro. Preparamos bolos de gelato, potes personalizados e propostas dedicadas para casamentos, aniversários e empresas. Fale conosco e montamos juntos o seu cardápio.
+              </div>
+            </div>
           </div>
         </div>
       </div>
