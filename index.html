@@ -185,13 +185,23 @@
   .menu-card .price { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: var(--fragola); }
 
   /* ---------- PROTEIN ---------- */
-  .protein-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .protein-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
   .protein-stat {
     background: rgba(255,251,244,.08); border: 1px solid rgba(255,251,244,.15);
-    border-radius: 20px; padding: 1.5rem; text-align: center; backdrop-filter: blur(8px);
+    border-radius: 20px; padding: 1.25rem .75rem; text-align: center; backdrop-filter: blur(8px);
+    min-width: 0;
   }
-  .protein-stat .n { font-family: 'Fraunces', serif; font-size: 2.5rem; font-weight: 800; color: var(--gold); display: block; line-height: 1; }
-  .protein-stat .l { font-size: .85rem; opacity: .8; margin-top: .4rem; display: block; }
+  .protein-stat .n {
+    font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 800; color: var(--gold); display: block; line-height: 1;
+    white-space: nowrap;
+  }
+  .protein-stat .l { font-size: .8rem; opacity: .8; margin-top: .4rem; display: block; line-height: 1.25; }
+  @media (max-width: 480px) {
+    .protein-stats { grid-template-columns: 1fr; gap: .75rem; }
+    .protein-stat { padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; text-align: left; gap: 1rem; }
+    .protein-stat .l { margin-top: 0; }
+  }
 
   /* ---------- GALLERY ---------- */
   .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
