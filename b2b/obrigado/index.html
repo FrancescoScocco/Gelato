@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-i18n-title="b2b.thanks.meta.title" data-i18n-description="b2b.thanks.meta.description">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    try {
+      var gelatoLang = localStorage.getItem("gelato.lang");
+      if (gelatoLang === "it" || gelatoLang === "en") {
+        document.documentElement.lang = gelatoLang;
+        document.documentElement.setAttribute("data-pending-lang", gelatoLang);
+      }
+    } catch (err) {}
+  </script>
+  <style>html[data-pending-lang] body{visibility:hidden} html.i18n-ready body{visibility:visible}</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido recebido · FranciBello</title>
+  <meta name="description" content="Recebemos seu pedido de degustação. Entraremos em contato pelo WhatsApp.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../b2b.css">
+</head>
+<body class="thanks-page" data-read-root>
+  <nav class="site-nav" data-analytics-chrome>
+    <div class="nav-inner">
+      <a class="brand" href="/">FranciBello</a>
+      <div class="lang-switch" role="group" data-i18n-aria="lang.label" aria-label="Idioma">
+        <button type="button" data-lang-switch="pt-BR" aria-pressed="true" aria-label="Português">PT</button>
+        <button type="button" data-lang-switch="it" aria-pressed="false" aria-label="Italiano">IT</button>
+        <button type="button" data-lang-switch="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-menu" data-i18n-aria="nav.menu" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="site-menu" id="site-menu">
+        <a href="/#home" data-i18n="nav.home">Início</a>
+        <a href="/#about" data-i18n="nav.story">Tradição</a>
+        <a href="/#menu" data-i18n="nav.menuPage">Cardápio</a>
+        <a href="/#proteico" data-i18n="nav.protein">Gelato Proteico</a>
+        <a href="/#delivery" data-i18n="nav.delivery">Delivery</a>
+        <a href="/#faq" data-i18n="nav.faq">FAQ</a>
+        <a href="/b2b/" data-i18n="nav.b2b">B2B</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="thanks">
+    <section class="wrap" data-section="Confirmação do lead" data-i18n-section="b2b.section.thanks">
+      <div class="thanks-box">
+        <h1 data-i18n="b2b.thanks.title">Pedido recebido!</h1>
+        <p data-i18n="b2b.thanks.body">Agora falta pouco para você conhecer o verdadeiro gelato italiano.</p>
+        <p data-i18n="b2b.thanks.body2">Entraremos em contato pelo WhatsApp para combinar os próximos passos.</p>
+        <div class="actions">
+          <a class="cta" href="../catalogo-b2b.pdf" download="catalogo-b2b.pdf" data-track-id="b2b_pdf" data-i18n="b2b.thanks.pdf" data-i18n-copy="b2b.thanks.pdf" data-track-copy="Baixar catálogo B2B">Baixar catálogo B2B</a>
+          <a class="ghost" data-b2b-whatsapp hidden href="#" target="_blank" rel="noopener" data-track-id="b2b_whatsapp" data-i18n="b2b.thanks.wa" data-i18n-copy="b2b.thanks.wa" data-track-copy="Conversar pelo WhatsApp">Conversar pelo WhatsApp</a>
+          <a class="ghost" href="/" data-track-id="b2b_thanks_home" data-i18n="b2b.thanks.home" data-i18n-copy="b2b.thanks.home" data-track-copy="Voltar ao site">Voltar ao site</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p data-i18n="b2b.footer.brand">FranciBello · Gelato italiano B2B · Jundiaí</p>
+    <p><a href="/b2b/" data-i18n="b2b.nav.taste">Degustação</a> · <a href="/" data-i18n="b2b.nav.home">Site principal</a></p>
+  </footer>
+
+  <script src="../../js/b2b/copy.js"></script>
+  <script src="../../js/i18n.js"></script>
+  <script src="../../js/analytics/config.js"></script>
+  <script src="../../js/analytics/store.js"></script>
+  <script src="../../js/analytics/transport.js"></script>
+  <script src="../../js/analytics/consent.js"></script>
+  <script src="../../js/analytics/reading.js"></script>
+  <script src="../../js/analytics/frustration.js"></script>
+  <script src="../../js/analytics/funnel.js"></script>
+  <script src="../../js/analytics/engine.js"></script>
+  <script src="../../js/b2b/leads.js"></script>
+  <script src="../../js/b2b/page.js"></script>
+  <script>
+    (function () {
+      var lead = window.GelatoB2BLeads && window.GelatoB2BLeads.latest ? window.GelatoB2BLeads.latest() : null;
+      if (!lead) {
+        window.location.replace("/b2b/");
+        return;
+      }
+      GelatoAnalytics.start();
+    })();
+  </script>
+</body>
+</html>

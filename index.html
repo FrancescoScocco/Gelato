@@ -1,7 +1,17 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-i18n-title="home.meta.title" data-i18n-description="home.meta.description">
 <head>
   <meta charset="UTF-8">
+  <script>
+    try {
+      var gelatoLang = localStorage.getItem("gelato.lang");
+      if (gelatoLang === "it" || gelatoLang === "en") {
+        document.documentElement.lang = gelatoLang;
+        document.documentElement.setAttribute("data-pending-lang", gelatoLang);
+      }
+    } catch (err) {}
+  </script>
+  <style>html[data-pending-lang] body{visibility:hidden} html.i18n-ready body{visibility:visible}</style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Donna Stroupe – Berry Bliss | Autêntica Gelateria Italiana em Jundiaí</title>
   <meta name="description" content="Donna Stroupe – Berry Bliss: a autêntica tradição italiana do gelato no coração de Jundiaí. Gelato artesanal, gelato proteico e delivery rápido.">
@@ -662,34 +672,98 @@
       .bubble { margin-bottom: 60px; }
       .delivery-strip { text-align: center; justify-content: center; }
     }
+
+    .ingredient-toggle {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      margin-top: 8px;
+      font-family: inherit;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #c44967;
+      cursor: pointer;
+    }
+    .ingredient-toggle:hover { color: var(--dark); }
+    .ingredient-panel {
+      margin-top: 8px;
+      font-size: 0.75rem;
+      line-height: 1.55;
+      max-width: 360px;
+    }
+    .contact-card {
+      background: rgba(248, 232, 229, 0.06);
+      border: 1px solid rgba(248, 232, 229, 0.14);
+      border-radius: 20px;
+      padding: 28px;
+    }
+    .contact-card label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      color: var(--pink-2);
+    }
+    .contact-card input,
+    .contact-card textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(248, 232, 229, 0.2);
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+      padding: 12px 14px;
+      font-family: inherit;
+      margin-bottom: 14px;
+    }
+    .contact-card input:focus,
+    .contact-card textarea:focus {
+      outline: 2px solid var(--pink);
+      border-color: transparent;
+    }
+    .footer-bottom a {
+      display: inline;
+      color: inherit;
+      margin: 0 0 0 8px;
+      text-decoration: underline;
+    }
   </style>
 </head>
 
-<body>
+<body data-read-root>
 
 <!-- ====================== NAVBAR ====================== -->
-<nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top" data-analytics-chrome>
   <div class="container">
     <a class="navbar-brand" href="#home">Donna Stroupe · Berry Bliss</a>
 
-    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuNav" aria-controls="menuNav" aria-label="Abrir menu">
+    <div class="lang-switch" role="group" data-i18n-aria="lang.label" aria-label="Idioma">
+      <button type="button" data-lang-switch="pt-BR" aria-pressed="true" aria-label="Português">PT</button>
+      <button type="button" data-lang-switch="it" aria-pressed="false" aria-label="Italiano">IT</button>
+      <button type="button" data-lang-switch="en" aria-pressed="false" aria-label="English">EN</button>
+    </div>
+
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuNav" aria-controls="menuNav" data-i18n-aria="nav.menu" aria-label="Abrir menu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="offcanvas offcanvas-end text-bg-dark side-menu" tabindex="-1" id="menuNav" aria-labelledby="menuNavLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="menuNavLabel">Donna Stroupe</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-i18n-aria="nav.close" aria-label="Fechar"></button>
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">Tradição</a></li>
-          <li class="nav-item"><a class="nav-link" href="#menu">Cardápio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#proteico">Gelato Proteico</a></li>
-          <li class="nav-item"><a class="nav-link" href="#delivery">Delivery</a></li>
-          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-          <li class="nav-item ms-lg-3 mt-3 mt-lg-0"><a class="btn-pill" href="#delivery">Peça agora</a></li>
+          <li class="nav-item"><a class="nav-link" href="#home" data-i18n="nav.home">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about" data-i18n="nav.story">Tradição</a></li>
+          <li class="nav-item"><a class="nav-link" href="#menu" data-i18n="nav.menuPage">Cardápio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proteico" data-i18n="nav.protein">Gelato Proteico</a></li>
+          <li class="nav-item"><a class="nav-link" href="#delivery" data-i18n="nav.delivery">Delivery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq" data-i18n="nav.faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="b2b/" data-i18n="nav.b2b">B2B</a></li>
         </ul>
       </div>
     </div>
@@ -697,83 +771,79 @@
 </nav>
 
 <!-- ====================== HERO ====================== -->
-<header class="hero" id="home">
+<header class="hero" id="home" data-section="Início" data-i18n-section="section.home">
   <div class="container">
-    <span class="hero-stamp">Autêntica Gelateria Italiana · Jundiaí, SP</span>
+    <span class="hero-stamp" data-i18n="home.hero.stamp">Autêntica Gelateria Italiana · Jundiaí, SP</span>
 
-    <h1>
+    <h1 data-i18n-html="home.hero.title">
       O verdadeiro gelato <span class="pink">italiano</span><br>
       no coração de Jundiaí.
     </h1>
 
-    <p class="lead-italic">
+    <p class="lead-italic" data-i18n="home.hero.lead">
       Leite fresco, frutas da estação e a maestria da tradição italiana do gelato.
       Um carinho artesanal preparado todos os dias, pensado para quem escolhe só o melhor.
     </p>
 
     <div class="hero-actions">
-      <a href="#menu" class="btn-pill">Conheça o Cardápio</a>
-      <a href="#delivery" class="btn-pill outline">Peça pelo Delivery</a>
+      <a href="#menu" class="btn-pill" data-track-id="hero_cardapio" data-i18n="home.hero.menu" data-i18n-copy="home.hero.menu" data-track-copy="Conheça o Cardápio">Conheça o Cardápio</a>
+      <a href="#delivery" class="btn-pill outline" data-track-id="hero_delivery" data-i18n="home.hero.delivery" data-i18n-copy="home.hero.delivery" data-track-copy="Peça pelo Delivery">Peça pelo Delivery</a>
     </div>
   </div>
 </header>
 
 <!-- ====================== FLAVORS INTRO ====================== -->
-<section class="section-dark text-center">
+<section class="section-dark text-center" id="sabores" data-section="Sabores" data-i18n-section="section.flavors">
   <div class="container">
-    <span class="eyebrow">Nossos Sabores</span>
-    <h2 class="section-title">Sabores de se apaixonar</h2>
-    <p class="small-text mx-auto mt-3" style="max-width: 680px;">
+    <span class="eyebrow" data-i18n="home.flavors.eyebrow">Nossos Sabores</span>
+    <h2 class="section-title" data-i18n="home.flavors.title">Sabores de se apaixonar</h2>
+    <p class="small-text mx-auto mt-3" style="max-width: 680px;" data-i18n="home.flavors.body">
       Cada mantecata nasce no nosso laboratório com ingredientes selecionados: leite fresco,
       frutas locais de Jundiaí e receitas da melhor tradição italiana.
     </p>
-    <a href="#menu" class="btn-pill mt-3">Ver cardápio completo</a>
+    <a href="#menu" class="btn-pill mt-3" data-track-id="sabores_cardapio" data-i18n="home.flavors.cta" data-i18n-copy="home.flavors.cta" data-track-copy="Ver cardápio completo">Ver cardápio completo</a>
   </div>
 </section>
 
-<section class="section-dark pt-0">
+<section class="section-dark pt-0" id="vitrine" data-section="Vitrine" data-i18n-section="section.showcase">
   <div class="container">
     <div class="row g-0">
       <div class="col-md-6 col-lg-3">
         <div class="flavor-card">
-          <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800" alt="Frutas Vermelhas">
+          <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800" alt="Frutas Vermelhas" data-i18n-alt="flavor.berries">
           <div class="flavor-card-content">
-            <h3>Frutas Vermelhas</h3>
-            <p class="small-text">Mirtilos, framboesas e amoras em um creme suave e perfumado.</p>
-            <a href="#delivery" class="btn-pill">Peça</a>
+            <h3 data-i18n="flavor.berries">Frutas Vermelhas</h3>
+            <p class="small-text" data-i18n="flavor.berries.body">Mirtilos, framboesas e amoras em um creme suave e perfumado.</p>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
         <div class="flavor-card">
-          <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=800" alt="Caramelo Salgado">
+          <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=800" alt="Caramelo Salgado" data-i18n-alt="flavor.caramel">
           <div class="flavor-card-content">
-            <h3>Caramelo Salgado</h3>
-            <p class="small-text">Caramelo cozido em fogo baixo com um toque de sal marinho.</p>
-            <a href="#delivery" class="btn-pill">Peça</a>
+            <h3 data-i18n="flavor.caramel">Caramelo Salgado</h3>
+            <p class="small-text" data-i18n="flavor.caramel.body">Caramelo cozido em fogo baixo com um toque de sal marinho.</p>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
         <div class="flavor-card">
-          <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800" alt="Morango Italiano">
+          <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800" alt="Morango Italiano" data-i18n-alt="flavor.strawberry">
           <div class="flavor-card-content">
-            <h3>Morango Italiano</h3>
-            <p class="small-text">Morangos frescos e creme leve: o sabor da Riviera.</p>
-            <a href="#delivery" class="btn-pill">Peça</a>
+            <h3 data-i18n="flavor.strawberry">Morango Italiano</h3>
+            <p class="small-text" data-i18n="flavor.strawberry.body">Morangos frescos e creme leve: o sabor da Riviera.</p>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
         <div class="flavor-card">
-          <img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=800" alt="Chocolate Amargo">
+          <img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=800" alt="Chocolate Amargo" data-i18n-alt="flavor.chocolate">
           <div class="flavor-card-content">
-            <h3>Chocolate Amargo</h3>
-            <p class="small-text">Cacau monorigem, intenso e aveludado, direto do coração da Itália.</p>
-            <a href="#delivery" class="btn-pill">Peça</a>
+            <h3 data-i18n="flavor.chocolate">Chocolate Amargo</h3>
+            <p class="small-text" data-i18n="flavor.chocolate.body">Cacau monorigem, intenso e aveludado, direto do coração da Itália.</p>
           </div>
         </div>
       </div>
@@ -782,68 +852,65 @@
 </section>
 
 <!-- ====================== STORY / CHEF ====================== -->
-<section class="story" id="about">
+<section class="story" id="about" data-section="Tradição" data-i18n-section="section.story">
   <div class="container">
     <div class="row align-items-end g-5">
       <div class="col-lg-6 text-center">
-        <img src="img/chef.png" class="img-fluid chef-avatar" alt="Nosso mestre gelatiere">
+        <img src="img/chef.png" class="img-fluid chef-avatar" alt="Nosso mestre gelatiere" data-i18n-alt="home.story.alt">
       </div>
 
       <div class="col-lg-6 pb-5">
-        <span class="story-badge">★ Da Tradição Italiana</span>
-        <h2 class="section-title">Nossa história,<br>o seu prazer.</h2>
-        <p class="small-text mt-3">
+        <span class="story-badge" data-i18n="home.story.badge">★ Da Tradição Italiana</span>
+        <h2 class="section-title" data-i18n-html="home.story.title">Nossa história,<br>o seu prazer.</h2>
+        <p class="small-text mt-3" data-i18n="home.story.p1">
           A Donna Stroupe – Berry Bliss nasce de uma promessa simples: trazer para Jundiaí
           o autêntico gelato artesanal italiano, feito como antigamente.
           Leite fresco selecionado, frutas da estação, sem conservantes, sem atalhos.
         </p>
-        <p class="small-text">
+        <p class="small-text" data-i18n="home.story.p2">
           Nosso mestre gelatiere acompanha pessoalmente cada mantecata, porque qualidade
           não se delega: se transmite. Cada colherada conta a Itália que amamos
           e o cuidado artesanal que você merece.
         </p>
-        <a href="#menu" class="btn-pill mt-2">Conheça o cardápio</a>
+        <a href="#menu" class="btn-pill mt-2" data-track-id="tradicao_cardapio" data-i18n="home.story.cta" data-i18n-copy="home.story.cta" data-track-copy="Conheça o cardápio">Conheça o cardápio</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ====================== MENU ====================== -->
-<section class="cream-section" id="menu">
+<section class="cream-section" id="menu" data-section="Cardápio" data-i18n-section="section.menu">
   <div class="container">
     <div class="text-center">
-      <span class="eyebrow" style="color:#c44967;">Cardápio da Casa</span>
-      <h2 class="section-title mb-5">A arte do gelato, servida na taça.</h2>
+      <span class="eyebrow" style="color:#c44967;" data-funnel-view="view_catalog" data-i18n="home.menu.eyebrow">Cardápio da Casa</span>
+      <h2 class="section-title mb-5" data-i18n="home.menu.title">A arte do gelato, servida na taça.</h2>
     </div>
 
     <div class="row g-4 mb-5">
       <div class="col-md-4">
         <div class="category-card">
-          <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=500" alt="Gelato Artesanal">
-          <h4>Gelato Artesanal</h4>
+          <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=500" alt="Gelato Artesanal" data-i18n-alt="home.cat.artisan">
+          <h4 data-i18n="home.cat.artisan">Gelato Artesanal</h4>
           <div class="stars">★★★★★</div>
-          <p>Mantecado fresco todos os dias com leite integral e ingredientes italianos selecionados.</p>
-          <a href="#delivery" class="btn-pill">Peça</a>
+          <p data-i18n="home.cat.artisan.body">Mantecado fresco todos os dias com leite integral e ingredientes italianos selecionados.</p>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="category-card">
-          <img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=500" alt="Sorbets de Frutas">
-          <h4>Sorbets de Frutas</h4>
+          <img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=500" alt="Sorbets de Frutas" data-i18n-alt="home.cat.sorbet">
+          <h4 data-i18n="home.cat.sorbet">Sorbets de Frutas</h4>
           <div class="stars">★★★★★</div>
-          <p>Apenas polpa de fruta fresca, sem leite e sem glúten. Frescor puro.</p>
-          <a href="#delivery" class="btn-pill">Peça</a>
+          <p data-i18n="home.cat.sorbet.body">Apenas polpa de fruta fresca, sem leite e sem glúten. Frescor puro.</p>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="category-card">
-          <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500" alt="Milkshake Premium">
-          <h4>Milkshake Premium</h4>
+          <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500" alt="Milkshake Premium" data-i18n-alt="home.cat.shake">
+          <h4 data-i18n="home.cat.shake">Milkshake Premium</h4>
           <div class="stars">★★★★★</div>
-          <p>Cremosos, decadentes, preparados com o nosso gelato artesanal. Pura indulgência.</p>
-          <a href="#delivery" class="btn-pill">Peça</a>
+          <p data-i18n="home.cat.shake.body">Cremosos, decadentes, preparados com o nosso gelato artesanal. Pura indulgência.</p>
         </div>
       </div>
     </div>
@@ -851,30 +918,30 @@
     <div class="row g-5">
       <div class="col-md-6">
         <div class="menu-row d-flex justify-content-between align-items-start">
-          <div><h5>CREMA ANTICA</h5><p>Gemas frescas, baunilha Bourbon, leite integral.</p></div>
+          <div><h5>CREMA ANTICA</h5><p data-i18n="menu.crema.body">Gemas frescas, baunilha Bourbon, leite integral.</p><button type="button" class="ingredient-toggle" data-funnel="expand_product_details" data-product="crema-antica" data-track-id="details_crema-antica" data-i18n="menu.ingredients" data-i18n-copy="menu.ingredientsCrema" data-track-copy="Ingredientes · CREMA ANTICA" aria-expanded="false" aria-controls="ing-crema-antica">Ingredientes</button><p id="ing-crema-antica" class="ingredient-panel" hidden data-i18n="menu.crema.ing">Leite integral, gemas frescas, açúcar e baunilha Bourbon. Mantecato no laboratório, sem preparado industrial.</p></div>
           <strong>R$ 18</strong>
         </div>
         <div class="menu-row d-flex justify-content-between align-items-start">
-          <div><h5>PISTACCHIO DI BRONTE</h5><p>Pasta pura de pistache siciliano DOP.</p></div>
+          <div><h5>PISTACCHIO DI BRONTE</h5><p data-i18n="menu.pistachio.body">Pasta pura de pistache siciliano DOP.</p><button type="button" class="ingredient-toggle" data-funnel="expand_product_details" data-product="pistacchio-bronte" data-track-id="details_pistacchio-bronte" data-i18n="menu.ingredients" data-i18n-copy="menu.ingredientsPistachio" data-track-copy="Ingredientes · PISTACCHIO DI BRONTE" aria-expanded="false" aria-controls="ing-pistacchio-bronte">Ingredientes</button><p id="ing-pistacchio-bronte" class="ingredient-panel" hidden data-i18n="menu.pistachio.ing">Pasta de pistache de Bronte DOP, leite, açúcar e um toque de sal. Sem corante.</p></div>
           <strong>R$ 24</strong>
         </div>
         <div class="menu-row d-flex justify-content-between align-items-start">
-          <div><h5>STRACCIATELLA</h5><p>Fiordilatte e chocolate amargo em lascas.</p></div>
+          <div><h5>STRACCIATELLA</h5><p data-i18n="menu.stracciatella.body">Fiordilatte e chocolate amargo em lascas.</p><button type="button" class="ingredient-toggle" data-funnel="expand_product_details" data-product="stracciatella" data-track-id="details_stracciatella" data-i18n="menu.ingredients" data-i18n-copy="menu.ingredientsStracciatella" data-track-copy="Ingredientes · STRACCIATELLA" aria-expanded="false" aria-controls="ing-stracciatella">Ingredientes</button><p id="ing-stracciatella" class="ingredient-panel" hidden data-i18n="menu.stracciatella.ing">Fiordilatte e chocolate amargo partido na hora. Sem gordura hidrogenada.</p></div>
           <strong>R$ 18</strong>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="menu-row d-flex justify-content-between align-items-start">
-          <div><h5>MORANGO ITALIANO</h5><p>Morangos frescos mantecados na hora.</p></div>
+          <div><h5>MORANGO ITALIANO</h5><p data-i18n="menu.strawberry.body">Morangos frescos mantecados na hora.</p><button type="button" class="ingredient-toggle" data-funnel="expand_product_details" data-product="morango-italiano" data-track-id="details_morango-italiano" data-i18n="menu.ingredients" data-i18n-copy="menu.ingredientsStrawberry" data-track-copy="Ingredientes · MORANGO ITALIANO" aria-expanded="false" aria-controls="ing-morango-italiano">Ingredientes</button><p id="ing-morango-italiano" class="ingredient-panel" hidden data-i18n="menu.strawberry.ing">Morango fresco, leite e açúcar. Fruta mantecada no dia, sem calda pronta.</p></div>
           <strong>R$ 18</strong>
         </div>
         <div class="menu-row d-flex justify-content-between align-items-start">
-          <div><h5>NOCCIOLA PIEMONTE IGP</h5><p>Tostagem lenta, sabor intenso e arredondado.</p></div>
+          <div><h5>NOCCIOLA PIEMONTE IGP</h5><p data-i18n="menu.hazelnut.body">Tostagem lenta, sabor intenso e arredondado.</p><button type="button" class="ingredient-toggle" data-funnel="expand_product_details" data-product="nocciola-piemonte" data-track-id="details_nocciola-piemonte" data-i18n="menu.ingredients" data-i18n-copy="menu.ingredientsHazelnut" data-track-copy="Ingredientes · NOCCIOLA PIEMONTE IGP" aria-expanded="false" aria-controls="ing-nocciola-piemonte">Ingredientes</button><p id="ing-nocciola-piemonte" class="ingredient-panel" hidden data-i18n="menu.hazelnut.ing">Pasta de avelã do Piemonte IGP, leite e açúcar. Tostagem lenta, sem aroma artificial.</p></div>
           <strong>R$ 22</strong>
         </div>
         <div class="menu-row d-flex justify-content-between align-items-start">
-          <div><h5>LIMONE DI AMALFI</h5><p>Sorbet fresco, cítrico, refrescante.</p></div>
+          <div><h5>LIMONE DI AMALFI</h5><p data-i18n="menu.lemon.body">Sorbet fresco, cítrico, refrescante.</p><button type="button" class="ingredient-toggle" data-funnel="expand_product_details" data-product="limone-amalfi" data-track-id="details_limone-amalfi" data-i18n="menu.ingredients" data-i18n-copy="menu.ingredientsLemon" data-track-copy="Ingredientes · LIMONE DI AMALFI" aria-expanded="false" aria-controls="ing-limone-amalfi">Ingredientes</button><p id="ing-limone-amalfi" class="ingredient-panel" hidden data-i18n="menu.lemon.ing">Limão, água e açúcar. Sem leite e sem glúten.</p></div>
           <strong>R$ 18</strong>
         </div>
       </div>
@@ -883,25 +950,25 @@
 </section>
 
 <!-- ====================== GELATO PROTEICO ====================== -->
-<section class="proteico" id="proteico">
+<section class="proteico" id="proteico" data-section="Gelato Proteico" data-i18n-section="section.protein">
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
         <div class="proteico-hero">
-          <span class="proteico-pill">High Protein · Low Sugar</span>
+          <span class="proteico-pill" data-i18n="home.protein.pill">High Protein · Low Sugar</span>
         </div>
 
         <div class="macro-grid">
-          <div class="macro"><strong>20g</strong><span>Proteínas</span></div>
-          <div class="macro"><strong>0</strong><span>Açúcares adicionados</span></div>
-          <div class="macro"><strong>160</strong><span>Kcal / porção</span></div>
+          <div class="macro"><strong>20g</strong><span data-i18n="home.protein.protein">Proteínas</span></div>
+          <div class="macro"><strong>0</strong><span data-i18n="home.protein.sugar">Açúcares adicionados</span></div>
+          <div class="macro"><strong>160</strong><span data-i18n="home.protein.kcal">Kcal / porção</span></div>
         </div>
       </div>
 
       <div class="col-lg-6">
-        <span class="eyebrow">Gelato Proteico</span>
-        <h2 class="section-title">Gostoso por fora,<br><span style="color: var(--pink);">potente por dentro.</span></h2>
-        <p class="small-text mt-3">
+        <span class="eyebrow" data-i18n="home.protein.eyebrow">Gelato Proteico</span>
+        <h2 class="section-title" data-i18n-html="home.protein.title">Gostoso por fora,<br><span style="color: var(--pink);">potente por dentro.</span></h2>
+        <p class="small-text mt-3" data-i18n="home.protein.body">
           Pensado para os esportistas de Jundiaí, para quem treina nos boxes de CrossFit, para quem corre no
           Parque da Cidade ou para quem simplesmente não quer abrir mão do sabor.
           Mesma cremosidade do nosso gelato clássico, mas com um perfil nutricional pensado para você.
@@ -911,41 +978,39 @@
           <div class="proteico-feature">
             <div class="icon">P</div>
             <div>
-              <h5>Proteínas do soro do leite</h5>
-              <p>Whey isolate de alta qualidade para apoiar a recuperação muscular pós-treino.</p>
+              <h5 data-i18n="home.protein.whey">Proteínas do soro do leite</h5>
+              <p data-i18n="home.protein.wheyBody">Whey isolate de alta qualidade para apoiar a recuperação muscular pós-treino.</p>
             </div>
           </div>
 
           <div class="proteico-feature">
             <div class="icon">0</div>
             <div>
-              <h5>Zero açúcares adicionados</h5>
-              <p>Doçura natural das frutas frescas e adoçantes limpos, sem abrir mão do sabor.</p>
+              <h5 data-i18n="home.protein.zero">Zero açúcares adicionados</h5>
+              <p data-i18n="home.protein.zeroBody">Doçura natural das frutas frescas e adoçantes limpos, sem abrir mão do sabor.</p>
             </div>
           </div>
 
           <div class="proteico-feature">
             <div class="icon">✓</div>
             <div>
-              <h5>Ingredientes naturais</h5>
-              <p>Sem corantes, sem gorduras hidrogenadas. Apenas matérias-primas selecionadas, como manda a tradição italiana.</p>
+              <h5 data-i18n="home.protein.natural">Ingredientes naturais</h5>
+              <p data-i18n="home.protein.naturalBody">Sem corantes, sem gorduras hidrogenadas. Apenas matérias-primas selecionadas, como manda a tradição italiana.</p>
             </div>
           </div>
         </div>
-
-        <a href="#delivery" class="btn-pill mt-4">Experimente a linha Proteica</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ====================== DELIVERY ====================== -->
-<section class="delivery" id="delivery">
+<section class="delivery" id="delivery" data-section="Delivery" data-i18n-section="section.delivery">
   <div class="container">
     <div class="text-center mb-5">
-      <span class="eyebrow" style="color:#c44967;">Delivery em Jundiaí</span>
-      <h2 class="section-title">Nosso gelato,<br>na sua casa em poucos minutos.</h2>
-      <p class="mx-auto mt-3" style="max-width: 680px; color: var(--text-dark);">
+      <span class="eyebrow" style="color:#c44967;" data-i18n="home.delivery.eyebrow">Delivery em Jundiaí</span>
+      <h2 class="section-title" data-i18n-html="home.delivery.title">Nosso gelato,<br>na sua casa em poucos minutos.</h2>
+      <p class="mx-auto mt-3" style="max-width: 680px; color: var(--text-dark);" data-i18n="home.delivery.body">
         Escolha o canal que preferir: nosso time prepara o seu pedido na hora,
         embala com cuidado térmico e entrega fresquinho em qualquer ponto de Jundiaí.
       </p>
@@ -962,9 +1027,9 @@
               <circle cx="17" cy="18" r="2"/>
             </svg>
           </div>
-          <h4>Entrega Direta</h4>
-          <p>Nosso entregador chega quente, ou melhor… geladíssimo. Embalagens térmicas por até 60 minutos.</p>
-          <a href="https://wa.me/5511999999999" class="btn-pill">Peça agora</a>
+          <h4 data-i18n="home.delivery.direct">Entrega Direta</h4>
+          <p data-i18n="home.delivery.directBody">Nosso entregador chega quente, ou melhor… geladíssimo. Embalagens térmicas por até 60 minutos.</p>
+          <a href="https://wa.me/5511999999999" class="btn-pill" data-track-id="delivery_direta" data-i18n="home.delivery.directCta" data-i18n-copy="home.delivery.directCopy" data-track-copy="Peça agora · Entrega Direta">Peça agora</a>
         </div>
       </div>
 
@@ -975,9 +1040,9 @@
               <path d="M20.52 3.48A11.83 11.83 0 0 0 12.06 0C5.5 0 .2 5.3.2 11.86c0 2.09.55 4.13 1.6 5.93L0 24l6.4-1.68a11.86 11.86 0 0 0 5.66 1.44h.01c6.55 0 11.86-5.3 11.86-11.86 0-3.17-1.23-6.15-3.41-8.42z"/>
             </svg>
           </div>
-          <h4>WhatsApp</h4>
-          <p>Peça pelo chat: indicamos sabores, preparamos a taça e avisamos o tempo real.</p>
-          <a href="https://wa.me/5511999999999" class="btn-pill">Abrir chat</a>
+          <h4 data-i18n="home.delivery.whatsapp">WhatsApp</h4>
+          <p data-i18n="home.delivery.whatsappBody">Peça pelo chat: indicamos sabores, preparamos a taça e avisamos o tempo real.</p>
+          <a href="https://wa.me/5511999999999" class="btn-pill" data-track-id="delivery_whatsapp" data-i18n="home.delivery.chat" data-i18n-copy="home.delivery.chat" data-track-copy="Abrir chat">Abrir chat</a>
         </div>
       </div>
 
@@ -992,8 +1057,8 @@
             </svg>
           </div>
           <h4>iFood</h4>
-          <p>Estamos nos principais aplicativos de delivery com o cardápio completo sempre atualizado.</p>
-          <a href="#" class="btn-pill">Abrir iFood</a>
+          <p data-i18n="home.delivery.ifoodBody">Estamos nos principais aplicativos de delivery com o cardápio completo sempre atualizado.</p>
+          <a href="#" class="btn-pill" data-track-id="delivery_ifood" data-i18n="home.delivery.ifood" data-i18n-copy="home.delivery.ifood" data-track-copy="Abrir iFood">Abrir iFood</a>
         </div>
       </div>
 
@@ -1005,29 +1070,29 @@
               <circle cx="12" cy="10" r="2.5"/>
             </svg>
           </div>
-          <h4>Retirada na Loja</h4>
-          <p>Reserve online, passe na gelateria, pule a fila. Prático, rápido, sempre fresco.</p>
-          <a href="#contact" class="btn-pill">Reservar retirada</a>
+          <h4 data-i18n="home.delivery.pickup">Retirada na Loja</h4>
+          <p data-i18n="home.delivery.pickupBody">Reserve online, passe na gelateria, pule a fila. Prático, rápido, sempre fresco.</p>
+          <a href="#contact" class="btn-pill" data-track-id="delivery_retirada" data-i18n="home.delivery.pickupCta" data-i18n-copy="home.delivery.pickupCta" data-track-copy="Reservar retirada">Reservar retirada</a>
         </div>
       </div>
     </div>
 
     <div class="delivery-strip">
       <div>
-        <h3>Entrega gratuita acima de R$ 80</h3>
-        <p>Válida em toda a zona urbana de Jundiaí · Tempo médio de 25 minutos</p>
+        <h3 data-i18n="home.delivery.free">Entrega gratuita acima de R$ 80</h3>
+        <p data-i18n="home.delivery.freeBody">Válida em toda a zona urbana de Jundiaí · Tempo médio de 25 minutos</p>
       </div>
-      <a href="https://wa.me/5511999999999" class="btn-pill">Peça pelo WhatsApp</a>
+      <a href="https://wa.me/5511999999999" class="btn-pill" data-track-id="delivery_strip" data-i18n="home.delivery.strip" data-i18n-copy="home.delivery.strip" data-track-copy="Peça pelo WhatsApp">Peça pelo WhatsApp</a>
     </div>
   </div>
 </section>
 
 <!-- ====================== TESTIMONIALS ====================== -->
-<section class="section-dark text-center">
+<section class="section-dark text-center" id="depoimentos" data-section="Depoimentos" data-i18n-section="section.reviews">
   <div class="container">
-    <span class="eyebrow">As Vozes de Jundiaí</span>
-    <h2 class="section-title">Quem prova, volta.</h2>
-    <p class="small-text mx-auto mt-3 mb-5" style="max-width: 620px;">
+    <span class="eyebrow" data-i18n="home.reviews.eyebrow">As Vozes de Jundiaí</span>
+    <h2 class="section-title" data-i18n="home.reviews.title">Quem prova, volta.</h2>
+    <p class="small-text mx-auto mt-3 mb-5" style="max-width: 620px;" data-i18n="home.reviews.body">
       Nossa comunidade cresce todos os dias. Veja o que contam os clientes que provaram
       a autêntica tradição italiana em Jundiaí.
     </p>
@@ -1037,21 +1102,21 @@
       <div class="col-md-4">
         <div class="bubble">
           <strong>@marianasweet</strong>
-          <p>"Pistache de Bronte de verdade, parece estar na Itália!"</p>
+          <p data-i18n="home.reviews.one">"Pistache de Bronte de verdade, parece estar na Itália!"</p>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="bubble">
           <strong>@rafa_fitjundiai</strong>
-          <p>"O gelato proteico é uma virada de jogo. Tão bom quanto o clássico."</p>
+          <p data-i18n="home.reviews.two">"O gelato proteico é uma virada de jogo. Tão bom quanto o clássico."</p>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="bubble">
           <strong>@familia_oliveira</strong>
-          <p>"Delivery rapidíssimo, chegou perfeito. Top de Jundiaí!"</p>
+          <p data-i18n="home.reviews.three">"Delivery rapidíssimo, chegou perfeito. Top de Jundiaí!"</p>
         </div>
       </div>
     </div>
@@ -1062,47 +1127,47 @@
         <div class="carousel-item active">
           <div class="bubble">
             <strong>@marianasweet</strong>
-            <p>"Pistache de Bronte de verdade, parece estar na Itália!"</p>
+            <p data-i18n="home.reviews.one">"Pistache de Bronte de verdade, parece estar na Itália!"</p>
           </div>
         </div>
         <div class="carousel-item">
           <div class="bubble">
             <strong>@rafa_fitjundiai</strong>
-            <p>"O gelato proteico é uma virada de jogo. Tão bom quanto o clássico."</p>
+            <p data-i18n="home.reviews.two">"O gelato proteico é uma virada de jogo. Tão bom quanto o clássico."</p>
           </div>
         </div>
         <div class="carousel-item">
           <div class="bubble">
             <strong>@familia_oliveira</strong>
-            <p>"Delivery rapidíssimo, chegou perfeito. Top de Jundiaí!"</p>
+            <p data-i18n="home.reviews.three">"Delivery rapidíssimo, chegou perfeito. Top de Jundiaí!"</p>
           </div>
         </div>
       </div>
 
       <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
+        <span class="visually-hidden" data-i18n="home.reviews.prev">Anterior</span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Próximo</span>
+        <span class="visually-hidden" data-i18n="home.reviews.next">Próximo</span>
       </button>
 
       <div class="carousel-indicators">
-        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Depoimento 1"></button>
-        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1" aria-label="Depoimento 2"></button>
-        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="2" aria-label="Depoimento 3"></button>
+        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="0" class="active" aria-current="true" data-i18n-aria="home.reviews.dot1" aria-label="Depoimento 1"></button>
+        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1" data-i18n-aria="home.reviews.dot2" aria-label="Depoimento 2"></button>
+        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="2" data-i18n-aria="home.reviews.dot3" aria-label="Depoimento 3"></button>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ====================== FAQ ====================== -->
-<section class="faq" id="faq">
+<section class="faq" id="faq" data-section="FAQ" data-i18n-section="section.faq">
   <div class="container">
     <div class="text-center">
-      <span class="eyebrow" style="color:#c44967;">Perguntas frequentes</span>
-      <h2 class="section-title mb-5">Tudo o que você quer saber.</h2>
+      <span class="eyebrow" style="color:#c44967;" data-i18n="home.faq.eyebrow">Perguntas frequentes</span>
+      <h2 class="section-title mb-5" data-i18n="home.faq.title">Tudo o que você quer saber.</h2>
     </div>
 
     <div class="row justify-content-center">
@@ -1112,32 +1177,32 @@
           <div class="faq-item">
             <div class="faq-icon">?</div>
             <div>
-              <h5 class="fw-bold">O gelato é realmente artesanal?</h5>
-              <p>Sim. Produzimos todos os dias no nosso laboratório em Jundiaí, com leite fresco e ingredientes selecionados da melhor tradição italiana. Sem preparados industriais.</p>
+              <h5 class="fw-bold" data-i18n="faq.q1">O gelato é realmente artesanal?</h5>
+              <p data-i18n="faq.a1">Sim. Produzimos todos os dias no nosso laboratório em Jundiaí, com leite fresco e ingredientes selecionados da melhor tradição italiana. Sem preparados industriais.</p>
             </div>
           </div>
 
           <div class="faq-item">
             <div class="faq-icon">?</div>
             <div>
-              <h5 class="fw-bold">O gelato proteico é indicado para quem treina?</h5>
-              <p>Foi desenvolvido justamente para atletas e entusiastas do fitness: alto teor de proteína, zero açúcares adicionados, sabor cremoso. Ideal para o pós-treino.</p>
+              <h5 class="fw-bold" data-i18n="faq.q2">O gelato proteico é indicado para quem treina?</h5>
+              <p data-i18n="faq.a2">Foi desenvolvido justamente para atletas e entusiastas do fitness: alto teor de proteína, zero açúcares adicionados, sabor cremoso. Ideal para o pós-treino.</p>
             </div>
           </div>
 
           <div class="faq-item">
             <div class="faq-icon">?</div>
             <div>
-              <h5 class="fw-bold">Quanto tempo leva o delivery?</h5>
-              <p>Em média 25 minutos na zona urbana de Jundiaí. Usamos embalagens térmicas para garantir a textura perfeita da nossa vitrine até a sua colher.</p>
+              <h5 class="fw-bold" data-i18n="faq.q3">Quanto tempo leva o delivery?</h5>
+              <p data-i18n="faq.a3">Em média 25 minutos na zona urbana de Jundiaí. Usamos embalagens térmicas para garantir a textura perfeita da nossa vitrine até a sua colher.</p>
             </div>
           </div>
 
           <div class="faq-item">
             <div class="faq-icon">?</div>
             <div>
-              <h5 class="fw-bold">Posso pedir para eventos e festas?</h5>
-              <p>Claro. Preparamos bolos de gelato, potes personalizados e propostas dedicadas para casamentos, aniversários e empresas. Fale conosco e montamos juntos o seu cardápio.</p>
+              <h5 class="fw-bold" data-i18n="faq.q4">Posso pedir para eventos e festas?</h5>
+              <p data-i18n="faq.a4">Claro. Preparamos bolos de gelato, potes personalizados e propostas dedicadas para casamentos, aniversários e empresas. Fale conosco e montamos juntos o seu cardápio.</p>
             </div>
           </div>
         </div>
@@ -1147,12 +1212,12 @@
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqA1" aria-expanded="false" aria-controls="faqA1">
-                <span class="faq-q-icon">?</span> O gelato é realmente artesanal?
+                <span class="faq-q-icon">?</span> <span data-i18n="faq.q1">O gelato é realmente artesanal?</span>
               </button>
             </h2>
             <div id="faqA1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                Sim. Produzimos todos os dias no nosso laboratório em Jundiaí, com leite fresco e ingredientes selecionados da melhor tradição italiana. Sem preparados industriais.
+                <span data-i18n="faq.a1">Sim. Produzimos todos os dias no nosso laboratório em Jundiaí, com leite fresco e ingredientes selecionados da melhor tradição italiana. Sem preparados industriais.</span>
               </div>
             </div>
           </div>
@@ -1160,12 +1225,12 @@
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqA2" aria-expanded="false" aria-controls="faqA2">
-                <span class="faq-q-icon">?</span> O gelato proteico é indicado para quem treina?
+                <span class="faq-q-icon">?</span> <span data-i18n="faq.q2">O gelato proteico é indicado para quem treina?</span>
               </button>
             </h2>
             <div id="faqA2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                Foi desenvolvido justamente para atletas e entusiastas do fitness: alto teor de proteína, zero açúcares adicionados, sabor cremoso. Ideal para o pós-treino.
+                <span data-i18n="faq.a2">Foi desenvolvido justamente para atletas e entusiastas do fitness: alto teor de proteína, zero açúcares adicionados, sabor cremoso. Ideal para o pós-treino.</span>
               </div>
             </div>
           </div>
@@ -1173,12 +1238,12 @@
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqA3" aria-expanded="false" aria-controls="faqA3">
-                <span class="faq-q-icon">?</span> Quanto tempo leva o delivery?
+                <span class="faq-q-icon">?</span> <span data-i18n="faq.q3">Quanto tempo leva o delivery?</span>
               </button>
             </h2>
             <div id="faqA3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                Em média 25 minutos na zona urbana de Jundiaí. Usamos embalagens térmicas para garantir a textura perfeita da nossa vitrine até a sua colher.
+                <span data-i18n="faq.a3">Em média 25 minutos na zona urbana de Jundiaí. Usamos embalagens térmicas para garantir a textura perfeita da nossa vitrine até a sua colher.</span>
               </div>
             </div>
           </div>
@@ -1186,12 +1251,12 @@
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqA4" aria-expanded="false" aria-controls="faqA4">
-                <span class="faq-q-icon">?</span> Posso pedir para eventos e festas?
+                <span class="faq-q-icon">?</span> <span data-i18n="faq.q4">Posso pedir para eventos e festas?</span>
               </button>
             </h2>
             <div id="faqA4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                Claro. Preparamos bolos de gelato, potes personalizados e propostas dedicadas para casamentos, aniversários e empresas. Fale conosco e montamos juntos o seu cardápio.
+                <span data-i18n="faq.a4">Claro. Preparamos bolos de gelato, potes personalizados e propostas dedicadas para casamentos, aniversários e empresas. Fale conosco e montamos juntos o seu cardápio.</span>
               </div>
             </div>
           </div>
@@ -1202,34 +1267,57 @@
 </section>
 
 <!-- ====================== FOOTER ====================== -->
-<footer class="footer" id="contact">
+<section class="section-dark" id="contact" data-section="Contato" data-i18n-section="section.contact">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <span class="eyebrow" data-i18n="home.contact.eyebrow">Contato</span>
+        <h2 class="section-title" data-i18n="home.contact.title">Fale com a gelateria.</h2>
+        <p class="small-text" data-i18n="home.contact.body">Eventos, encomendas e dúvidas. A mensagem fica nesta página: o envio automático ainda não está ligado.</p>
+        <form id="contato-form" class="contact-card mt-4">
+          <label for="contato-nome" data-i18n="form.name">Nome</label>
+          <input id="contato-nome" name="nome" data-field-label="Nome" data-i18n-label="form.name" autocomplete="name" required>
+          <label for="contato-email" data-i18n="form.email">E-mail</label>
+          <input id="contato-email" name="email" type="email" data-field-label="E-mail" data-i18n-label="form.email" autocomplete="email" required>
+          <label for="contato-mensagem" data-i18n="form.message">Mensagem</label>
+          <textarea id="contato-mensagem" name="mensagem" data-field-label="Mensagem" data-i18n-label="form.message" rows="4" required></textarea>
+          <button type="submit" class="btn-pill" data-track-id="contato_enviar" data-i18n="home.contact.send" data-i18n-copy="home.contact.send" data-track-copy="Enviar mensagem">Enviar mensagem</button>
+          <p id="contato-ok" class="small-text mt-3" hidden data-i18n="home.contact.ok">Mensagem registrada neste navegador.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="rodape" data-section="Rodapé" data-i18n-section="section.footer">
   <div class="container">
     <div class="row g-5">
       <div class="col-md-4">
         <h3 class="fw-bold">Donna Stroupe<br>Berry Bliss</h3>
-        <p class="small-text">A autêntica tradição italiana do gelato no coração de Jundiaí. Artesanal todos os dias.</p>
+        <p class="small-text" data-i18n="footer.blurb">A autêntica tradição italiana do gelato no coração de Jundiaí. Artesanal todos os dias.</p>
       </div>
 
       <div class="col-md-4">
-        <h5 class="fw-bold">Contato</h5>
-        <p class="small-text mb-1">E-mail: ola@berrybliss.com.br</p>
-        <p class="small-text mb-1">WhatsApp: +55 11 99999-9999</p>
+        <h5 class="fw-bold" data-i18n="footer.contact">Contato</h5>
+        <p class="small-text mb-1"><span data-i18n="footer.email">E-mail</span>: ola@berrybliss.com.br</p>
+        <p class="small-text mb-1"><span data-i18n="footer.whatsapp">WhatsApp</span>: +55 11 99999-9999</p>
         <p class="small-text">Rua das Gelaterias 123 · Jundiaí, SP</p>
       </div>
 
       <div class="col-md-4">
-        <h5 class="fw-bold">Navegue</h5>
-        <a href="#home">Início</a>
-        <a href="#about">Tradição</a>
-        <a href="#menu">Cardápio</a>
-        <a href="#proteico">Gelato Proteico</a>
-        <a href="#delivery">Delivery</a>
-        <a href="#faq">FAQ</a>
+        <h5 class="fw-bold" data-i18n="footer.browse">Navegue</h5>
+        <a href="#home" data-i18n="nav.home">Início</a>
+        <a href="#about" data-i18n="nav.story">Tradição</a>
+        <a href="#menu" data-i18n="nav.menuPage">Cardápio</a>
+        <a href="#proteico" data-i18n="nav.protein">Gelato Proteico</a>
+        <a href="#delivery" data-i18n="nav.delivery">Delivery</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <a href="b2b/" data-i18n="nav.b2b">B2B</a>
       </div>
     </div>
 
     <div class="footer-bottom">
-      © <span id="year"></span> Donna Stroupe – Berry Bliss · Todos os direitos reservados · Feito com paixão italiana em Jundiaí
+      © <span id="year"></span> <span data-i18n="footer.rights">Donna Stroupe – Berry Bliss · Todos os direitos reservados · Feito com paixão italiana em Jundiaí</span> <a href="lab/analytics/">Lab</a>
     </div>
   </div>
 </footer>
@@ -1246,6 +1334,37 @@
     });
   });
   document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+<script src="js/i18n.js"></script>
+<script src="js/analytics/config.js"></script>
+<script src="js/analytics/store.js"></script>
+<script src="js/analytics/transport.js"></script>
+<script src="js/analytics/consent.js"></script>
+<script src="js/analytics/reading.js"></script>
+<script src="js/analytics/frustration.js"></script>
+<script src="js/analytics/funnel.js"></script>
+<script src="js/analytics/engine.js"></script>
+<script>
+  GelatoAnalytics.start();
+  document.addEventListener("click", function (event) {
+    var button = event.target.closest("[data-funnel='expand_product_details'][aria-controls]");
+    if (!button) return;
+    var panel = document.getElementById(button.getAttribute("aria-controls"));
+    if (!panel) return;
+    var opened = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", opened ? "false" : "true");
+    panel.hidden = opened;
+  });
+  var contactForm = document.getElementById("contato-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var note = document.getElementById("contato-ok");
+      if (note) note.hidden = false;
+      var submit = contactForm.querySelector("[type='submit']");
+      if (submit) submit.disabled = true;
+    });
+  }
 </script>
 
 </body>
