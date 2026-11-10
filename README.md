@@ -28,12 +28,22 @@ npm run preview
 
 Output in `dist/`, adatto a GitHub Pages o server statico.
 
-Per GitHub Pages con path `/Gelato/`:
+## GitHub Pages
+
+Il sito va su `https://francescoscocco.github.io/Gelato/`.
+
+1. In **Settings → Pages → Build and deployment → Source** scegli **GitHub Actions** (non “Deploy from a branch”).
+2. Push su `main`: il workflow `.github/workflows/deploy-pages.yml` fa `npm run build` con `base: /Gelato/` e pubblica `dist/`.
+
+Build locale con lo stesso base:
 
 ```bash
 set VITE_BASE=/Gelato/
 npm run build
+npm run preview
 ```
+
+Poi apri `http://127.0.0.1:4173/Gelato/`.
 
 ## Route
 
