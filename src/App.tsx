@@ -2,6 +2,8 @@
 import { AnalyticsBootstrap } from "./components/AnalyticsBootstrap";
 import { B2BPage } from "./pages/B2BPage";
 import { B2BThanksPage } from "./pages/B2BThanksPage";
+import { FranchisePage } from "./pages/FranchisePage";
+import { FranchiseThanksPage } from "./pages/FranchiseThanksPage";
 import { HomePage } from "./pages/HomePage";
 import { LabAnalyticsPage } from "./pages/LabAnalyticsPage";
 import { useEffect } from "react";
@@ -32,6 +34,8 @@ export function App() {
         <Route index element={<HomePage />} />
         <Route path="b2b" element={<B2BPage />} />
         <Route path="b2b/obrigado" element={<B2BThanksPage />} />
+        <Route path="franquias" element={<FranchisePage />} />
+        <Route path="franquias/obrigado" element={<FranchiseThanksPage />} />
         <Route path="lab/analytics" element={<LabAnalyticsPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

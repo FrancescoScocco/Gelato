@@ -33,6 +33,7 @@ export function SiteFooter({ children }: Props) {
             <Link to="/#about">{t("nav.story")}</Link>
             <Link to="/#menu">{t("nav.menuPage")}</Link>
             <Link to="/b2b">{t("nav.b2b")}</Link>
+            <Link to="/franquias">{t("nav.franquias", "Franquias")}</Link>
             <Link to="/lab/analytics">Lab</Link>
           </Col>
         </Row>

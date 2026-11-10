@@ -30,7 +30,11 @@ npm install
 npm run dev
 ```
 
-Apri `http://127.0.0.1:5173/b2b`
+Apri:
+
+- Home: `http://127.0.0.1:5173/`
+- B2B: `http://127.0.0.1:5173/b2b`
+- Franquias: `http://127.0.0.1:5173/franquias`
 
 Build statica:
 
@@ -38,3 +42,13 @@ Build statica:
 npm run build
 npm run preview
 ```
+
+## Lead franchising
+
+Contratto: `docs/FRANCHISE_LEADS_API.md`
+
+```http
+POST /api/v1/public/franchise/leads
+```
+
+Su GitHub Pages **non** usare localhost: serve backend HTTPS pubblico + `VITE_API_BASE_URL`. Senza di esso il form mostra errore (nessuna conferma finta).

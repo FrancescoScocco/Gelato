@@ -22,6 +22,7 @@ const HOME_LINKS: NavItem[] = [
   { to: "/#delivery", labelKey: "nav.delivery", fallback: "Delivery", hash: true },
   { to: "/#faq", labelKey: "nav.faq", fallback: "FAQ", hash: true },
   { to: "/b2b", labelKey: "nav.b2b", fallback: "B2B" },
+  { to: "/franquias", labelKey: "nav.franquias", fallback: "Franquias" },
 ];
 
 type Props = {
@@ -43,6 +44,7 @@ export function SiteNavbar({
       ? [
           { to: "/", labelKey: "nav.home", fallback: "Início" },
           { to: "/b2b", labelKey: "nav.b2b", fallback: "B2B" },
+          { to: "/franquias", labelKey: "nav.franquias", fallback: "Franquias" },
           { to: "/lab/analytics", labelKey: "nav.lab", fallback: "Lab" },
         ]
       : HOME_LINKS;
@@ -102,7 +104,6 @@ export function SiteNavbar({
           <Offcanvas.Title id="site-menu-label">{brand.split("·")[0].trim()}</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <LanguageDropdown className="mb-2" align="start" />
           <Nav className="flex-column">
             {links.map((item) =>
               item.hash ? (
@@ -122,6 +123,7 @@ export function SiteNavbar({
               ),
             )}
           </Nav>
+          <LanguageDropdown className="mt-3" align="start" />
         </Offcanvas.Body>
       </Offcanvas>
     </>

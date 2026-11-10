@@ -1,0 +1,381 @@
+/* FranciBello · Franquias landing — scoped under body.page-franquias */
+
+body.page-franquias {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  padding-bottom: 72px;
+}
+
+body.page-franquias .btn-berry {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+}
+
+body.page-franquias .btn-berry:hover,
+body.page-franquias .btn-berry:focus {
+  background: #9a3c39;
+  border-color: #9a3c39;
+  color: #fff;
+}
+
+body.page-franquias .franq-btn-ghost {
+  border-width: 2px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+body.page-franquias .franq-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 248, 237, 0.85);
+  margin-bottom: 1rem;
+}
+
+body.page-franquias .franq-eyebrow.dark {
+  color: var(--color-accent);
+}
+
+body.page-franquias .franq-h2 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-primary);
+  max-width: 22ch;
+}
+
+body.page-franquias .franq-h2.light {
+  color: var(--color-secondary);
+}
+
+body.page-franquias .franq-lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 42rem;
+  margin-top: 1.25rem;
+  color: rgba(255, 248, 237, 0.92);
+}
+
+body.page-franquias .franq-lead.dark,
+body.page-franquias .franq-lead.light.dark {
+  color: var(--color-muted);
+}
+
+body.page-franquias .franq-lead.light {
+  color: rgba(255, 248, 237, 0.9);
+}
+
+/* Hero */
+body.page-franquias .franq-hero {
+  position: relative;
+  min-height: min(92vh, 820px);
+  display: flex;
+  align-items: flex-end;
+  padding: 7rem 0 4.5rem;
+  color: var(--color-secondary);
+  overflow: hidden;
+}
+
+body.page-franquias .franq-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(105deg, rgba(27, 55, 44, 0.92) 0%, rgba(38, 74, 59, 0.72) 48%, rgba(38, 74, 59, 0.45) 100%),
+    url("https://images.unsplash.com/photo-1557142046-c704a3adf380?w=1600&q=80") center / cover no-repeat;
+  z-index: 0;
+}
+
+body.page-franquias .franq-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+body.page-franquias .franq-hero h1 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+  max-width: 14ch;
+  margin: 0;
+}
+
+body.page-franquias .franq-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+/* Sections */
+body.page-franquias .franq-section {
+  padding: 5rem 0;
+}
+
+body.page-franquias .franq-cream {
+  background: var(--color-secondary);
+}
+
+body.page-franquias .franq-green {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+body.page-franquias .franq-card {
+  height: 100%;
+  padding: 1.75rem 1.5rem;
+  border-top: 3px solid var(--color-accent);
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(27, 55, 44, 0.08);
+}
+
+body.page-franquias .franq-card h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.85rem;
+}
+
+body.page-franquias .franq-card p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+body.page-franquias .franq-figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 4 / 3;
+  background: #1b372c;
+}
+
+body.page-franquias .franq-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+body.page-franquias .franq-concept-note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+body.page-franquias .franq-step-num {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+  margin-bottom: 0.6rem;
+}
+
+body.page-franquias .franq-green .franq-step-num {
+  color: #f3c2bf;
+}
+
+body.page-franquias .franq-step h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+
+body.page-franquias .franq-cream .franq-step h3 {
+  color: var(--color-primary);
+}
+
+body.page-franquias .franq-step p {
+  margin: 0;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+body.page-franquias .franq-green .franq-step p {
+  color: rgba(255, 248, 237, 0.85);
+}
+
+body.page-franquias .franq-founder-photo {
+  margin: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: #1b372c;
+}
+
+body.page-franquias .franq-founder-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+body.page-franquias .franq-quote {
+  margin: 1.75rem 0 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid rgba(255, 248, 237, 0.25);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  color: #f3c2bf;
+  line-height: 1.4;
+}
+
+/* FAQ */
+body.page-franquias .franq-faq .accordion-item {
+  background: transparent;
+  border-color: rgba(38, 74, 59, 0.15);
+}
+
+body.page-franquias .franq-faq .accordion-button {
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 700;
+  box-shadow: none;
+}
+
+body.page-franquias .franq-faq .accordion-button:not(.collapsed) {
+  background: rgba(38, 74, 59, 0.06);
+  color: var(--color-primary);
+}
+
+body.page-franquias .franq-faq .accordion-body {
+  color: var(--color-muted);
+}
+
+body.page-franquias .franq-faq a {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* Form */
+body.page-franquias .franq-form-section {
+  background: linear-gradient(180deg, #fff8ed 0%, #f3ebe0 100%);
+  padding-bottom: 6rem;
+}
+
+body.page-franquias .franq-form-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  background: #fff;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  box-shadow: 0 24px 56px rgba(27, 55, 44, 0.1);
+  border-top: 4px solid var(--color-accent);
+}
+
+body.page-franquias .franq-form-wrap .franq-h2 {
+  max-width: none;
+}
+
+body.page-franquias .franq-privacy,
+body.page-franquias .franq-legal {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+body.page-franquias .franq-privacy a {
+  color: var(--color-accent);
+}
+
+body.page-franquias .form-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-primary);
+}
+
+body.page-franquias .form-control,
+body.page-franquias .form-select {
+  border-radius: 0;
+  border-color: rgba(38, 74, 59, 0.25);
+  padding: 0.7rem 0.85rem;
+}
+
+body.page-franquias .form-control:focus,
+body.page-franquias .form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(38, 74, 59, 0.15);
+}
+
+/* Sticky CTA mobile */
+body.page-franquias .franq-sticky-cta {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1040;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  padding: 0.95rem 1rem;
+  box-shadow: 0 12px 28px rgba(184, 73, 69, 0.45);
+}
+
+/* Thanks */
+body.page-franquias-thanks .franq-thanks {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  padding: 7rem 0 4rem;
+  background: var(--color-secondary);
+}
+
+body.page-franquias-thanks .franq-thanks-box {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-top: 4px solid var(--color-accent);
+  background: #fff;
+  box-shadow: 0 20px 48px rgba(27, 55, 44, 0.08);
+}
+
+body.page-franquias-thanks .franq-thanks-box h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+body.page-franquias-thanks .franq-thanks-box p {
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 767.98px) {
+  body.page-franquias .franq-hero {
+    min-height: 88vh;
+    align-items: center;
+    padding-top: 6rem;
+  }
+
+  body.page-franquias .franq-hero h1 {
+    max-width: none;
+  }
+
+  body.page-franquias .franq-section {
+    padding: 3.5rem 0;
+  }
+}

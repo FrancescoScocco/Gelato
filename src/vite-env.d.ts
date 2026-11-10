@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL?: string;
   readonly VITE_ANALYTICS_REMOTE?: string;
+  readonly VITE_LEADS_REMOTE?: string;
   readonly VITE_BASE?: string;
 }
 
@@ -14,4 +15,5 @@ interface Window {
   GELATO_API_BASE_URL?: string;
   GELATO_ANALYTICS_REMOTE?: boolean;
   GELATO_ANALYTICS_ENABLED?: boolean;
+  GELATO_LEADS_REMOTE?: boolean;
 }

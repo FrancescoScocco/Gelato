@@ -4,6 +4,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import { Link } from "react-router-dom";
 import { HtmlText } from "../components/HtmlText";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNavbar } from "../components/SiteNavbar";
@@ -350,6 +351,20 @@ export function HomePage() {
               </Accordion.Item>
             ))}
           </Accordion>
+        </Container>
+      </section>
+
+      <section className="section-cream py-5" id="franquias-teaser" data-section="Franquias teaser">
+        <Container className="text-center">
+          <p className="eyebrow text-uppercase fw-bold mb-2" style={{ letterSpacing: "0.12em", color: "var(--color-accent)" }}>
+            {t("franq.hero.eyebrow")}
+          </p>
+          <h2 className="section-title mx-auto" style={{ maxWidth: "18ch" }}>
+            {t("franq.hero.title")}
+          </h2>
+          <Link to="/franquias" className="btn-pill mt-3">
+            {t("nav.franquias", "Franquias")}
+          </Link>
         </Container>
       </section>
 

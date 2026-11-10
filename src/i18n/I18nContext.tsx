@@ -9,15 +9,20 @@ import {
 } from "react";
 import { homeMessages, type Lang } from "./homeMessages";
 import { b2bMessages } from "./b2bMessages";
+import { franchiseMessages } from "./franchiseMessages";
 
 const STORAGE_KEY = "gelato.lang";
 
 type Dictionary = Record<string, string>;
 
 const packs: Record<Lang, Dictionary> = {
-  "pt-BR": { ...homeMessages["pt-BR"], ...b2bMessages["pt-BR"] },
-  it: { ...homeMessages.it, ...b2bMessages.it },
-  en: { ...homeMessages.en, ...b2bMessages.en },
+  "pt-BR": {
+    ...homeMessages["pt-BR"],
+    ...b2bMessages["pt-BR"],
+    ...franchiseMessages["pt-BR"],
+  },
+  it: { ...homeMessages.it, ...b2bMessages.it, ...franchiseMessages.it },
+  en: { ...homeMessages.en, ...b2bMessages.en, ...franchiseMessages.en },
 };
 
 function normalize(value: string | null | undefined): Lang {
