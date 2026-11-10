@@ -426,14 +426,6 @@ export function FranchisePage() {
         </Container>
       </section>
 
-      <button
-        type="button"
-        className="franq-sticky-cta d-md-none"
-        onClick={() => onCta("sticky", "franq-form")}
-      >
-        {t("franq.sticky")}
-      </button>
-
       <SiteFooter />
     </>
   );

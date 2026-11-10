@@ -76,8 +76,6 @@ export function B2BPage() {
   const [trackedSim, setTrackedSim] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
-  const [stickyHidden, setStickyHidden] = useState(false);
-  const [focusHidden, setFocusHidden] = useState(false);
 
   useEffect(() => {
     document.title = t("b2b.meta.title", "FranciBello B2B");
@@ -94,36 +92,6 @@ export function B2BPage() {
       capture("b2b_simulator_used", { demo: true, scenario: scenarioIndex });
     }
   }, [scenarioIndex, trackedSim]);
-
-  useEffect(() => {
-    function paint() {
-      const form = formRef.current;
-      if (!form) return;
-      const box = form.getBoundingClientRect();
-      const formVisible = box.top < window.innerHeight * 0.82 && box.bottom > 80;
-      setStickyHidden(focusHidden || formVisible);
-    }
-    function onFocusIn(event: FocusEvent) {
-      const target = event.target as Element | null;
-      setFocusHidden(!!target?.closest?.("form.lead-form"));
-    }
-    function onFocusOut() {
-      window.setTimeout(() => {
-        setFocusHidden(!!document.activeElement?.closest?.("form.lead-form"));
-      }, 40);
-    }
-    paint();
-    window.addEventListener("scroll", paint, { passive: true });
-    window.addEventListener("resize", paint);
-    document.addEventListener("focusin", onFocusIn);
-    document.addEventListener("focusout", onFocusOut);
-    return () => {
-      window.removeEventListener("scroll", paint);
-      window.removeEventListener("resize", paint);
-      document.removeEventListener("focusin", onFocusIn);
-      document.removeEventListener("focusout", onFocusOut);
-    };
-  }, [focusHidden]);
 
   function scrollToForm(event?: MouseEvent) {
     event?.preventDefault();
@@ -391,16 +359,6 @@ export function B2BPage() {
           <p>{t("b2b.privacy.body")}</p>
         </section>
       </SiteFooter>
-
-      <a
-        className={`sticky-cta${stickyHidden ? " is-hidden" : ""}`}
-        href="#lead-form"
-        data-analytics-chrome
-        data-track-id="b2b_sticky"
-        onClick={scrollToForm}
-      >
-        {t("b2b.sticky")}
-      </a>
     </div>
   );
 }
