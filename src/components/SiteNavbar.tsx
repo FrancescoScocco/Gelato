@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
 import { LanguageDropdown } from "./LanguageDropdown";
 
@@ -31,6 +31,14 @@ type Props = {
   variant?: "home" | "b2b" | "lab";
 };
 
+function scrollToHash(hash: string) {
+  const id = hash.replace(/^#/, "");
+  if (!id) return;
+  requestAnimationFrame(() => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
 export function SiteNavbar({
   brand = "Donna Stroupe · Berry Bliss",
   brandTo = "/",
@@ -38,6 +46,7 @@ export function SiteNavbar({
 }: Props) {
   const { t } = useI18n();
   const location = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const links =
     variant === "lab"
@@ -51,6 +60,33 @@ export function SiteNavbar({
 
   function close() {
     setOpen(false);
+  }
+
+  function goTo(to: string) {
+    close();
+    // Chiudi prima il menu, poi naviga (evita che l'offcanvas blocchi il routing)
+    window.setTimeout(() => {
+      const hashIndex = to.indexOf("#");
+      const pathname = hashIndex >= 0 ? to.slice(0, hashIndex) || "/" : to;
+      const hash = hashIndex >= 0 ? to.slice(hashIndex) : "";
+      const samePage =
+        (pathname === "/" ? location.pathname === "/" : location.pathname === pathname) &&
+        (!hash || location.hash === hash);
+
+      navigate(to);
+      if (hash) {
+        // Stesso hash o navigazione hash: forza lo scroll dopo la chiusura menu
+        window.setTimeout(() => scrollToHash(hash), samePage ? 50 : 120);
+      }
+    }, 10);
+  }
+
+  function isActive(item: NavItem) {
+    if (item.hash) {
+      const hash = item.to.includes("#") ? `#${item.to.split("#")[1]}` : "";
+      return location.pathname === "/" && location.hash === hash;
+    }
+    return location.pathname === item.to || location.pathname.startsWith(`${item.to}/`);
   }
 
   return (
@@ -70,23 +106,22 @@ export function SiteNavbar({
           </button>
           <Navbar.Collapse className="d-none d-lg-flex justify-content-end">
             <Nav className="align-items-center">
-              {links.map((item) =>
-                item.hash ? (
-                  <Nav.Link key={item.to} href={item.to} className="nav-link">
-                    {t(item.labelKey, item.fallback)}
-                  </Nav.Link>
-                ) : (
-                  <Nav.Link
-                    key={item.to}
-                    as={NavLink}
-                    to={item.to}
-                    className="nav-link"
-                    end={item.to === "/"}
-                  >
-                    {t(item.labelKey, item.fallback)}
-                  </Nav.Link>
-                ),
-              )}
+              {links.map((item) => (
+                <Nav.Link
+                  key={item.to}
+                  as={Link}
+                  to={item.to}
+                  className={`nav-link${isActive(item) ? " active" : ""}`}
+                  onClick={(event) => {
+                    if (item.hash) {
+                      event.preventDefault();
+                      goTo(item.to);
+                    }
+                  }}
+                >
+                  {t(item.labelKey, item.fallback)}
+                </Nav.Link>
+              ))}
               <LanguageDropdown className="ms-2" />
             </Nav>
           </Navbar.Collapse>
@@ -105,23 +140,17 @@ export function SiteNavbar({
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="flex-column">
-            {links.map((item) =>
-              item.hash ? (
-                <Nav.Link key={item.to} href={item.to} onClick={close}>
-                  {t(item.labelKey, item.fallback)}
-                </Nav.Link>
-              ) : (
-                <Nav.Link
-                  key={item.to}
-                  as={NavLink}
-                  to={item.to}
-                  onClick={close}
-                  className={location.pathname === item.to ? "active" : undefined}
-                >
-                  {t(item.labelKey, item.fallback)}
-                </Nav.Link>
-              ),
-            )}
+            {links.map((item) => (
+              <Nav.Link
+                key={item.to}
+                as="button"
+                type="button"
+                className={isActive(item) ? "active" : undefined}
+                onClick={() => goTo(item.to)}
+              >
+                {t(item.labelKey, item.fallback)}
+              </Nav.Link>
+            ))}
           </Nav>
           <LanguageDropdown className="mt-3" align="start" />
         </Offcanvas.Body>

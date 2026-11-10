@@ -122,6 +122,17 @@
   border-bottom: 1px solid rgba(255, 248, 237, 0.08);
 }
 
+.site-offcanvas button.nav-link {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 248, 237, 0.08);
+  border-radius: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
 .site-offcanvas .nav-link:hover,
 .site-offcanvas .nav-link.active {
   color: #f3c2bf !important;
