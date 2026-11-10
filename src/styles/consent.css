@@ -1,0 +1,75 @@
+.ga-banner {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2000;
+  width: min(420px, calc(100% - 32px));
+  background: #264a3b;
+  color: #fff8ed;
+  border: 1px solid rgba(255, 248, 237, 0.2);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  font-family: Montserrat, "Segoe UI", sans-serif;
+}
+
+.ga-banner p {
+  margin: 0 0 14px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #d8e5de;
+}
+
+.ga-banner strong {
+  display: block;
+  color: #fff;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.ga-banner .ga-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ga-banner button {
+  font-family: inherit;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ga-banner .ga-accept {
+  background: #b84945;
+  color: #ffffff;
+  border: 0;
+}
+
+.ga-banner .ga-reject {
+  background: transparent;
+  color: #fff8ed;
+  border: 1px solid rgba(255, 248, 237, 0.45);
+}
+
+.ga-privacy {
+  display: inline-block;
+  margin: 8px 0 0;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #264a3b;
+  color: #fff8ed;
+  font-family: Montserrat, "Segoe UI", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}

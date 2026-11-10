@@ -1,0 +1,75 @@
+:root {
+  --color-primary: #264A3B;
+  --color-secondary: #FFF8ED;
+  --color-accent: #B84945;
+  --color-text: #264A3B;
+  --color-text-inverse: #FFF8ED;
+  --color-background: #FFF8ED;
+  --color-surface-dark: #264A3B;
+  --color-surface-dark-2: #2F5A48;
+  --color-surface-dark-3: #1B372C;
+  --color-cta: #B84945;
+  --color-muted: #4A6358;
+  --color-on-dark-muted: #D8E5DE;
+
+  --dark: var(--color-primary);
+  --dark-2: var(--color-surface-dark-2);
+  --dark-3: var(--color-surface-dark-3);
+  --cream: var(--color-secondary);
+  --pink: var(--color-accent);
+  --pink-2: #D47874;
+  --text-dark: var(--color-text);
+  --white: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", "Segoe UI", Candara, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+.pink {
+  color: #f3c2bf;
+}
+
+.btn-pill {
+  background: var(--color-cta);
+  color: #ffffff;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 28px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn-pill:hover {
+  background: #9a3c39;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-pill.outline {
+  background: transparent;
+  color: var(--color-text-inverse);
+  border: 2px solid var(--color-text-inverse);
+}
+
+.btn-pill.outline:hover {
+  background: var(--color-text-inverse);
+  color: var(--color-primary);
+}
