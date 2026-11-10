@@ -163,7 +163,7 @@ export function B2BPage() {
             <h2>{t("b2b.margin.title")}</h2>
             <p className="lead-line">{t("b2b.margin.sub")}</p>
             <p className="claim-note">{t("b2b.margin.note")}</p>
-            <a className="cta" href="#b2b-sim" data-track-id="b2b_cta_margin">
+            <a className="cta" href="#lead-form" data-track-id="b2b_cta_margin" onClick={scrollToForm}>
               {t("b2b.margin.cta")}
             </a>
           </div>
