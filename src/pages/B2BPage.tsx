@@ -234,6 +234,34 @@ export function B2BPage() {
           </div>
         </section>
 
+        <section className="band cream" id="b2b-summary" data-section="Resumo dos benefícios">
+          <div className="wrap">
+            <p className="summary-eyebrow">{t("b2b.summary.kicker")}</p>
+            <h2 className="section-title">{t("b2b.summary.title")}</h2>
+            <p className="lead-line light">{t("b2b.summary.sub")}</p>
+            <div className="summary-table-wrap">
+              <table className="summary-table">
+                <caption className="visually-hidden">{t("b2b.summary.title")}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{t("b2b.summary.col.point")}</th>
+                    <th scope="col">{t("b2b.summary.col.value")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                    <tr key={n}>
+                      <th scope="row">{t(`b2b.summary.${n}.label`)}</th>
+                      <td>{t(`b2b.summary.${n}.value`)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="claim-note summary-note">{t("b2b.summary.note")}</p>
+          </div>
+        </section>
+
         <section className="band cream" id="b2b-sim" data-section="Simulador de margem">
           <div className="wrap sim-grid">
             <div className="sim-intro">

@@ -453,6 +453,80 @@
 .b2b-app .step-card, .thanks-page .step-card{ min-height: 180px; }
 .b2b-app .steps, .thanks-page .steps{ margin-bottom: 12px; }
 
+.b2b-app .summary-eyebrow{
+  margin: 0 0 12px;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.b2b-app .summary-table-wrap{
+  margin-top: 36px;
+  overflow-x: auto;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+.b2b-app .summary-table{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+.b2b-app .summary-table caption.visually-hidden{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.b2b-app .summary-table th,
+.b2b-app .summary-table td{
+  padding: 18px 22px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(38, 74, 59, 0.1);
+}
+.b2b-app .summary-table thead th{
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.b2b-app .summary-table tbody th{
+  width: 32%;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(38, 74, 59, 0.04);
+}
+.b2b-app .summary-table tbody td{
+  color: #3D5549;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.b2b-app .summary-table tbody tr:last-child th,
+.b2b-app .summary-table tbody tr:last-child td{
+  border-bottom: 0;
+}
+.b2b-app .summary-table tbody tr:first-child td{
+  color: var(--color-accent);
+  font-weight: 800;
+}
+.b2b-app .summary-note{
+  margin-top: 18px;
+  max-width: 52rem;
+}
+
 .b2b-app .cta, .thanks-page .cta,
 .b2b-app .cta-ghost, .thanks-page .cta-ghost{
   display: inline-block;
@@ -741,7 +815,10 @@
   .b2b-app .sim-metric-main, .thanks-page .sim-metric-main{ padding-bottom: 8px; border-bottom: 1px solid rgba(27, 55, 44, 0.08); }
 }
 @media (max-width: 719px) {
-  .b2b-app, .thanks-page{ padding-bottom: 92px; }
+  .b2b-app, .thanks-page{ padding-bottom: 28px; }
+  .b2b-app .summary-table{ min-width: 0; }
+  .b2b-app .summary-table th,
+  .b2b-app .summary-table td{ padding: 14px 16px; }
   .b2b-app .flavor-swipe, .thanks-page .flavor-swipe{ display: block; }
   .b2b-app .flavor-scroller, .thanks-page .flavor-scroller{
     margin-top: 14px;
