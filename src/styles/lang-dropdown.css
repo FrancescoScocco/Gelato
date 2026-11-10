@@ -98,6 +98,15 @@
   filter: invert(1) brightness(2);
 }
 
+/* Offcanvas sopra backdrop e navbar: altrimenti i tap chiudono solo l’overlay */
+.site-offcanvas.offcanvas {
+  z-index: 2200;
+}
+
+.offcanvas-backdrop {
+  z-index: 2150;
+}
+
 .site-offcanvas {
   background: var(--color-primary) !important;
   color: var(--color-text-inverse);

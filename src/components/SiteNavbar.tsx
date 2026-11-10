@@ -34,9 +34,10 @@ type Props = {
 function scrollToHash(hash: string) {
   const id = hash.replace(/^#/, "");
   if (!id) return;
-  requestAnimationFrame(() => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
+  const run = () => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  requestAnimationFrame(run);
+  window.setTimeout(run, 80);
+  window.setTimeout(run, 200);
 }
 
 export function SiteNavbar({
@@ -63,28 +64,24 @@ export function SiteNavbar({
   }
 
   function goTo(to: string) {
-    close();
-    // Chiudi prima il menu, poi naviga (evita che l'offcanvas blocchi il routing)
-    window.setTimeout(() => {
-      const hashIndex = to.indexOf("#");
-      const pathname = hashIndex >= 0 ? to.slice(0, hashIndex) || "/" : to;
-      const hash = hashIndex >= 0 ? to.slice(hashIndex) : "";
-      const samePage =
-        (pathname === "/" ? location.pathname === "/" : location.pathname === pathname) &&
-        (!hash || location.hash === hash);
+    const hashIndex = to.indexOf("#");
+    const pathname = hashIndex >= 0 ? to.slice(0, hashIndex) || "/" : to;
+    const hash = hashIndex >= 0 ? to.slice(hashIndex) : "";
 
-      navigate(to);
-      if (hash) {
-        // Stesso hash o navigazione hash: forza lo scroll dopo la chiusura menu
-        window.setTimeout(() => scrollToHash(hash), samePage ? 50 : 120);
-      }
-    }, 10);
+    close();
+    navigate(to);
+
+    if (hash) {
+      // Dopo chiusura offcanvas / eventuale cambio pagina
+      const delay = location.pathname === pathname ? 50 : 150;
+      window.setTimeout(() => scrollToHash(hash), delay);
+    }
   }
 
   function isActive(item: NavItem) {
     if (item.hash) {
       const hash = item.to.includes("#") ? `#${item.to.split("#")[1]}` : "";
-      return location.pathname === "/" && location.hash === hash;
+      return location.pathname === "/" && (!hash || location.hash === hash);
     }
     return location.pathname === item.to || location.pathname.startsWith(`${item.to}/`);
   }
@@ -113,10 +110,9 @@ export function SiteNavbar({
                   to={item.to}
                   className={`nav-link${isActive(item) ? " active" : ""}`}
                   onClick={(event) => {
-                    if (item.hash) {
-                      event.preventDefault();
-                      goTo(item.to);
-                    }
+                    if (!item.hash) return;
+                    event.preventDefault();
+                    goTo(item.to);
                   }}
                 >
                   {t(item.labelKey, item.fallback)}
@@ -134,6 +130,8 @@ export function SiteNavbar({
         placement="end"
         className="site-offcanvas text-bg-dark"
         aria-labelledby="site-menu-label"
+        backdrop={true}
+        scroll={false}
       >
         <Offcanvas.Header closeButton closeVariant="white">
           <Offcanvas.Title id="site-menu-label">{brand.split("·")[0].trim()}</Offcanvas.Title>
@@ -141,15 +139,14 @@ export function SiteNavbar({
         <Offcanvas.Body>
           <Nav className="flex-column">
             {links.map((item) => (
-              <Nav.Link
+              <button
                 key={item.to}
-                as="button"
                 type="button"
-                className={isActive(item) ? "active" : undefined}
+                className={`nav-link${isActive(item) ? " active" : ""}`}
                 onClick={() => goTo(item.to)}
               >
                 {t(item.labelKey, item.fallback)}
-              </Nav.Link>
+              </button>
             ))}
           </Nav>
           <LanguageDropdown className="mt-3" align="start" />

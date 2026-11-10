@@ -45,7 +45,8 @@
       padding: 18px 0;
       z-index: 2100;
     }
-    .offcanvas-backdrop { z-index: 2095; }
+    .offcanvas-backdrop { z-index: 2150; }
+    .site-offcanvas.offcanvas { z-index: 2200; }
     .navbar-brand {
       color: var(--color-primary);
       font-weight: 900;
